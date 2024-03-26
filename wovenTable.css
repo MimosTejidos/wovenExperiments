@@ -170,3 +170,19 @@ div {
   ::-moz-focus-inner{
     padding: 0;
   }
+
+
+  input[type="number"] {
+    width: 5rem;
+  }
+
+  .btn-primary {
+    background-color: var(--color3) ;
+    color: var(--color5);
+  }
+
+  .btn-secondary {
+    background-color: var(--color6);
+    color: var(--color3);
+
+  }

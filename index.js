@@ -1,4 +1,6 @@
 let style = woven.selectedStyle; // woven.tileTraditional;
+console.log('style:');
+console.log(style);
 
 let showGrid = false;
 $(document).ready(function(){	
@@ -17,32 +19,27 @@ $(document).ready(function(){
 	$('#genButton').on("click", function(event){
 		reset();
 	});
-	$('#tradTile').on("click", function(event){
-		style = woven.tileTraditional;
+	$('#triangTile').on("click", function(event){
+		style = woven.triangleStyle;
+		console.log('style:');
+		console.log(style);
 		$(".tileButton").removeClass("btn-primary");
 		$(".tileButton").addClass("btn-secondary");
-		$('#tradTile').addClass("btn-primary")
+		$('#triangTile').addClass("btn-primary")
 		reset();
 	});
-	$('#smithTile').on("click", function(event){
-		style = woven.tileSmith;
+	$('#lineTile').on("click", function(event){
+		style = woven.lineStyle;
 		$(".tileButton").removeClass("btn-primary");
 		$(".tileButton").addClass("btn-secondary");
-		$('#smithTile').addClass("btn-primary")
+		$('#lineTile').addClass("btn-primary")
 		reset();
 	});
-	$('#roundTile').on("click", function(event){
-		style = woven.semiCircle;
+	$('#cableTile').on("click", function(event){
+		style = woven.cableStyle;
 		$(".tileButton").removeClass("btn-primary");
 		$(".tileButton").addClass("btn-secondary");
-		$('#roundTile').addClass("btn-primary")
-		reset();
-	});
-	$('#curveSquareTile').on("click", function(event){
-		style = woven.curveAndSquare;
-		$(".tileButton").removeClass("btn-primary");
-		$(".tileButton").addClass("btn-secondary");
-		$('#curveSquareTile').addClass("btn-primary")
+		$('#cableTile').addClass("btn-primary")
 		reset();
 	});
 });

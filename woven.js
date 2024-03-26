@@ -6,30 +6,6 @@ let woven = {}; // woven = truchet
 woven.tiles = null;
 woven. border = false;
 
-
-// let rows;
-
-// let nRows;
-// let rowsInput;
-
-// let cols;
-// let nCols;
-// let colsInput;
-
-// let size;
-// let nSize;
-// let sizeInput;
-/*
-let generateBtn;
-let clearBtn;
-let toggleGridBtn;
-let MCpickerBtn;
-
-let pickedMC = '#5F5FA5'
-let showGrid = false;
-*/
-
-
 // functions:
 
 // window.onload = init();
@@ -40,8 +16,8 @@ woven.start = function(size, rows) {
     woven.tiles.init();
 }
 
-woven.traditionalStyle = function (rotation, t) { // trouchet.tileTraditional
-    console.log(`function woven.traditionalStyle (rotation, t) executed / (${rotation}, ${t})`);
+woven.triangleStyle = function (rotation, t) { // trouchet.tileTraditional
+    console.log(`function woven.triangleStyle (rotation, t) executed / (${rotation}, ${t})`);
     console.log(`t:`);
     console.log(t);
     let tile = new Builder ('polygon')
@@ -65,11 +41,11 @@ woven.traditionalStyle = function (rotation, t) { // trouchet.tileTraditional
     return tile;
 }
 
-woven.tileDiag = function(rotation,t) {
+woven.lineStyle = function(rotation,t) {
 	console.log(`f woven.tileDiag = function(rotation, t) executed / (${rotation}, ${t})`);
 	console.log(`t:`);
 	console.log(t);
-	var tile = new Builder("line").att("style",`stroke: ${pickedMC};stroke-width:3`)
+	var tile = new Builder("line").att("style",`stroke: ${pickedA};stroke-width:3`)
 		.att("stroke-linecap","square");
 	var c = t.size;
 	if (rotation % 2 == 0) {
@@ -88,6 +64,8 @@ woven.tileDiag = function(rotation,t) {
 
 // woven.tileStyle = woven.traditionalStyle;
 // woven.tileStyle = woven.tileDiag
+// woven.tileStyle = woven.lineStyle
+// woven.tileStyle = woven.cableStyle
 
 class Tiles {
     constructor(size, rows, cols) {
@@ -135,7 +113,9 @@ class Tiles {
                 .att('width', `${this.size}px`)
                 .att('height', `${this.size}px`);
 
-        let tile = woven.tileStyle(k, this);
+        // let tile = woven.tileStyle(k, this);
+        let tile = woven.lineStyle(k, this);
+
 
         if (woven.border) { // should get this info from tileStyle
             console.log('if woven.border = true');
@@ -183,7 +163,7 @@ class Tiles {
         toggleGrid();
     });
 
-    MCpickerBtn = $('#colorPickerMC').change(function(){
+    pickerBtnA = $('#colorPickerA').change(function(){
         chooseLineColor();
     });
 
@@ -192,8 +172,7 @@ class Tiles {
     rows = parseInt(rowsInput.val());
     cols = parseInt(colsInput.val());
     size = parseInt(sizeInput.val());
-    pickedMC = $('#colorPickerMC').val();
-    // pickedMC = MCpickerBtn.value;
+    pickedA = $('#colorPickerA').val();
 // };
 
 // main functions:
@@ -231,14 +210,13 @@ function getUserInputs () {
     rows = nRows;
     cols = nCols;
     size = nSize
-    // pickedMC = MCpickerBtn.value;
-    pickedMC = $('#colorPickerMC').val();
+    pickedA= $('#colorPickerA').val();
 
     console.log(`Number of rows: ${nRows}. Number of columns: ${nCols}`);
 }
 
-woven.traditionalStyle = function (rotation, t) { // trouchet.tileTraditional
-    console.log(`function woven.traditionalStyle (rotation, t) executed / (${rotation}, ${t})`);
+woven.triangleStyle = function (rotation, t) { // trouchet.tileTraditional
+    console.log(`function woven.triangleStyle (rotation, t) executed / (${rotation}, ${t})`);
     console.log(`t:`);
     console.log(t);
     let tile = new Builder ('polygon').att('stroke-width', `${0}px`).att('fill', 'black');
@@ -270,8 +248,6 @@ woven.traditionalStyle = function (rotation, t) { // trouchet.tileTraditional
 // picking MC and CC:
 function chooseLineColor () {
     console.log('function chooseLineColor() executed');
-    // pickedMC = '#5F5FA5'; //var(--color4);
-    // pickedMC = MCpickerBtn.value;
     clearPage();
     generateTable();
 }
@@ -285,91 +261,13 @@ function clearPage() {
 
 ////
 
-//  let style = woven.traditionalStyle;
- let style = woven.tileDiag;
+//  let style = woven.triangleStyle;
+//  let style = woven.tileDiag;
+ // woven.tileStyle = woven.traditionalStyle;
+// woven.tileStyle = woven.tileDiag
+let style = woven.lineStyle
+// woven.tileStyle = woven.cableStyle
 
-
-
-/* index.js: */
-/*
-
-let style = woven.selectedStyle; // woven.tileTraditional;
-
-let showGrid = false;
-$(document).ready(function(){	
-    console.log('f $(document).ready(function() executed');
-	$('#clearBtn').on("click", function(event){
-		reset(true);
-	});
-	$('#randBtn').on("click", function(event){
-		woven.tiles.randomizeTile();
-		$('#tileBoard').html(woven.tiles.htmlTable());
-	});
-	$('#gridBtn').on("click", function(event){
-		woven.border = !woven.border;
-		$('#tileBoard').html(woven.tiles.htmlTable());
-	});
-	$('#genButton').on("click", function(event){
-		reset();
-	});
-	$('#tradTile').on("click", function(event){
-		style = woven.tileTraditional;
-		$(".tileButton").removeClass("btn-primary");
-		$(".tileButton").addClass("btn-secondary");
-		$('#tradTile').addClass("btn-primary")
-		reset();
-	});
-	$('#smithTile').on("click", function(event){
-		style = woven.tileSmith;
-		$(".tileButton").removeClass("btn-primary");
-		$(".tileButton").addClass("btn-secondary");
-		$('#smithTile').addClass("btn-primary")
-		reset();
-	});
-	$('#roundTile').on("click", function(event){
-		style = woven.semiCircle;
-		$(".tileButton").removeClass("btn-primary");
-		$(".tileButton").addClass("btn-secondary");
-		$('#roundTile').addClass("btn-primary")
-		reset();
-	});
-	$('#curveSquareTile').on("click", function(event){
-		style = woven.curveAndSquare;
-		$(".tileButton").removeClass("btn-primary");
-		$(".tileButton").addClass("btn-secondary");
-		$('#curveSquareTile').addClass("btn-primary")
-		reset();
-	});
-});
-
-$(document).ready(function(){
-    console.log('f $(document).ready(function() executed');
-	reset();
-});
-
-//externalize the rows and cols so we can compare with prev.
-// let rows = 0;
-// let cols = 0;
-function reset(hard){
-
-	let nRows = parseInt($('#rowInput').val());
-	let nCols = parseInt($('#colInput').val());
-	let size = parseInt($('#sizeInput').val());
-	
-	if ((rows !== nRows) || (cols !== nCols)||hard){
-		rows = nRows;
-		cols = nCols;
-		woven.tiles = new Tiles(size,rows);
-		woven.rule = woven.ruleNone;
-		woven.tiles.cols = cols;
-		woven.tiles.init();	
-	}
-	woven.tiles.size = size;
-	woven.tileStyle = style;
-	$('#tileBoard').html(woven.tiles.htmlTable());
-}
-
-/* end of index.js */ 
 
 
 
