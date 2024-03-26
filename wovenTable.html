@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="wovenTable.css">
+    <!-- jQuery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Google fonts: Raleway -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Google fonts: DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <title>SVG table</title>
+</head>
+<body>
+    <section id="inputsSection" class="centered">
+        <div class="inputs">
+            <label for="rowsInput"> Number of rows:
+                <input type="number" id="rowsInput" min="1" step="1" value="3">
+            </label>        
+        </div>
+        <div class="inputs">
+            <label for="columnsInput"> Number of columns:
+                <input type="number" id="columnsInput" min="1" step="1" value="5">
+            </label>        
+        </div>
+        <div class="inputs">
+            <label for="sizeInput"> Size:
+                <input type="number" id="sizeInput" min="1" step="1" value="40">
+            </label>        
+        </div>
+        <div class="centered buttonDiv">
+            <button id="generateBtn">Generate</button>
+            <button id="clearBtn">Clear</button>
+            <button id="toggleGridBtn">Toggle Grid</button>
+        </div>
+    </section>
+    <section class="centered">
+        <div id="colorPickerDiv">
+
+            <div id="colorSwatches">
+                <div class="swatch">
+                    <label for="colorPickerMC">
+                        <input type="color" id="colorPickerMC" title="Pick line color" value="#5F5FA5"> 
+                    </label>
+                    <div class="swatchInfo">
+                        <h3>Pick color</h3>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </section>
+    <section id="SVGtablesection" class="centered">
+        <table id="htmlTableID">
+        </table>
+        <div id="tileBoard"></div>
+    </section>
+    
+
+    <script src="classes.js"></script>
+    <script src="woven.js"></script>
+    <script></script>
+</body>
+</html>

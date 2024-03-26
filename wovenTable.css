@@ -1,0 +1,172 @@
+* {
+    box-sizing: border-box;
+    /* margin: 0;
+    padding: 0; */
+}
+
+:root {
+    /* CSS HEX */
+    --color1: #000000; /* black */
+    --color2: #13203d; /* OxfordBlue */
+    --color3: #3a3354; /* rgb(58, 51, 84) */
+    --color4: #5F5FA5; /* rgb(95, 95, 165) */
+    --color5: #C4C4E1;
+    --color6: #E6E6F3;
+    --color7: #F7F7FB;
+}
+
+body {
+    background-color: var(--color5);
+    color: var(--color3);
+}
+
+section {
+  margin: 1em;
+}
+
+p, label {
+    font-family: 'Raleway', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 17px;
+}
+
+h1, h2, h3, h4, button {
+    font-family: 'DM Sans', Helvetica, Arial, sans-serif;
+    margin: 0;
+    color: var(--color3);
+}
+
+button {
+    width: fit-content;
+    background-color: var(--color6);
+    color: var(--color3);
+    border-color: var(--color4);
+    border-radius: 0.375rem;
+    font-size: 1.2rem;
+    margin: 0.2rem;
+}
+
+button:hover {
+    box-shadow: 0 0 5px 1px var(--color4);
+    cursor: pointer;
+}
+
+table, th, td {
+	padding: 0px;
+	text-align: center;
+    /* border: 1px solid var(--color6); */
+    border-collapse: collapse; 
+}
+
+table {
+    border: 1px solid var(--color2);	
+    margin: 1rem;
+}
+
+svg {
+	display: block; 
+	margin: auto ;
+	border: 0px solid black;
+}
+
+.centered {
+    text-align: center;
+}
+
+.disabled {
+    background-color: var(--color5);
+    color: var(--color4);
+    border-color: var(--color5);
+    /* cursor: not-allowed; */
+}
+
+.disabled:hover {
+    box-shadow: none;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+div {
+	/* display: inline-block; */
+	padding: 2px;
+	border: 2px;
+}
+
+#SVGtablesection {
+    display: grid;
+    justify-content: center;
+}
+
+/* choosing line colors: */
+
+#colorPickerDiv {
+    width: 100%;
+    display: flex;
+    justify-content:space-around;    
+}
+
+#colorSwatches {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0.5rem 0;
+}
+
+.swatch{
+    border: 2px solid var(--color6);
+    border-radius: 0.5rem;
+    box-shadow: 1em 1em 1em rgba(0, 0, 0, .1);
+    display: flex;
+    flex-direction: column;
+    margin: 0.25rem 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .swatch .swatchInfo{
+    padding: 0.1em;
+  }
+  
+  .swatch h3{
+    margin: 0;
+    columns: var(--color2);
+  }
+  
+  input[type="color"] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    height: 5em;
+    padding: 0;
+    width: 5em;
+    border: 1.5px solid var(--color6);
+  }
+  
+  *:focus{
+    border-radius: 0;
+    outline: none;
+  }
+  
+  ::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  
+  ::-webkit-color-swatch{
+    border: 0;
+    border-radius: 0;
+  }
+  
+  ::-moz-color-swatch,
+  ::-moz-focus-inner{
+    border: 0;
+  }
+  
+  ::-moz-focus-inner{
+    padding: 0;
+  }
