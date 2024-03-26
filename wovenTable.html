@@ -18,6 +18,7 @@
 </head>
 <body>
     <section id="inputsSection" class="centered">
+        <h2>Choose the size of your swatch</h2>
         <div class="inputs">
             <label for="rowsInput"> Number of rows:
                 <input type="number" id="rowsInput" min="1" step="1" value="3">
@@ -30,7 +31,7 @@
         </div>
         <div class="inputs">
             <label for="sizeInput"> Size:
-                <input type="number" id="sizeInput" min="1" step="1" value="40">
+                <input type="number" id="sizeInput" min="1" step="1" value="40"> px
             </label>        
         </div>
         <div class="centered buttonDiv">
@@ -38,27 +39,50 @@
             <button id="clearBtn">Clear</button>
             <button id="toggleGridBtn">Toggle Grid</button>
         </div>
+
+        <div class="centered buttonsDiv">
+            <h2>Pick a style</h2>
+            <div class="btn-group btn-group-lg " role="group">
+                <button type="button" id="triangleTile" class="btn btn-secondary tileButton">
+                    triangles</button>
+                <button type="button" id="lineTile" class="btn btn-primary tileButton">
+                    line</button>
+                <button type="button" id="cableTile" class="btn btn-secondary tileButton">
+                    cable</button>
+          </div>
+        </div>
     </section>
+    <hr>
     <section class="centered">
         <div id="colorPickerDiv">
 
             <div id="colorSwatches">
                 <div class="swatch">
-                    <label for="colorPickerMC">
-                        <input type="color" id="colorPickerMC" title="Pick line color" value="#5F5FA5"> 
+                    <label for="colorPickerA">
+                        <input type="color" id="colorPickerA" title="Pick line color A" value="#5F5FA5"> 
                     </label>
                     <div class="swatchInfo">
-                        <h3>Pick color</h3>
+                        <h3>Pick color A</h3>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <label for="colorPickerB">
+                        <input type="color" id="colorPickerB" title="Pick line color B" value="#ffa500"> 
+                    </label>
+                    <div class="swatchInfo">
+                        <h3>Pick color B</h3>
                     </div>
                 </div>
             </div>
         </div> 
     </section>
+    <hr>
     <section id="SVGtablesection" class="centered">
         <table id="htmlTableID">
         </table>
         <div id="tileBoard"></div>
     </section>
+    <hr>
     
 
     <script src="classes.js"></script>
