@@ -7,3 +7,28 @@ celtic_baseMS.js
 celtic_displayMS.js
 celtic_editorMS.js
 celticIndex.js
+
+
+
+
+# # How to Ignore a Previously Committed File:
+
+# You first need to update the .gitignore file to include the x.txt file:
+# Now, you will need to tell Git not to track this file by removing it from the index:
+
+# git rm --cached x.txt
+
+# The git rm command, along with the --cached option, deletes the file from the repository but does not delete the actual file. This means the file remains on your local system and in your working directory as an ignored file.
+
+# A git status will show that the file is no longer in the repository, and entering the ls command will show that the file exists on your local file system.
+
+# If you want to delete the file from the repository and your local system, omit the --cached option.
+
+# Next, add the .gitignore to the staging area using the git add command:
+
+# git add .gitignore
+
+# Finally, commit the .gitignore file using the git commit command:
+
+# git commit -m "update ignored files"
+

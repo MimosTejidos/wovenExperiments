@@ -4,7 +4,7 @@
 
 let woven = {}; // woven = truchet
 woven.tiles = null;
-woven. border = false;
+woven.border = false;
 
 let selectedStyle = 'lineStyle';
 
@@ -47,31 +47,70 @@ woven.lineStyle = function(rotation,t) {
 	console.log(`f woven.lineStyle = function(rotation, t) executed / (${rotation}, ${t})`);
 	console.log(`t:`);
 	console.log(t);
-	var tile = new Builder("line").att("style",`stroke: ${pickedA};stroke-width:3`)
+	let line1 = new Builder("line").att("style",`stroke: ${pickedA};stroke-width:3`)
 		.att("stroke-linecap","square");
-	var c = t.size;
+	let c = t.size;
 	if (rotation % 2 == 0) {
-		tile.att("x1", c);
-		tile.att("y1", 0);
-		tile.att("x2", 0);
-		tile.att("y2",c); 
+		line1.att("x1", c);
+		line1.att("y1", 0);
+		line1.att("x2", 0);
+		line1.att("y2",c); 
 	} else {
-		tile.att("x1", 0);
-		tile.att("y1", 0);
-		tile.att("x2", c);
-		tile.att("y2",c);		
+		line1.att("x1", 0);
+		line1.att("y1", 0);
+		line1.att("x2", c);
+		line1.att("y2",c);		
 	}
-	return tile;
+	return line1;
+};
+
+woven.lineStyle2 = function(rotation,t) {
+	console.log(`f woven.lineStyle2 = function(rotation, t) executed / (${rotation}, ${t})`);
+	console.log(`t:`);
+	console.log(t);
+	let line1 = new Builder("line").att("style",`stroke: ${pickedA};stroke-width:3`)
+		.att("stroke-linecap","square");
+    let line2 = new Builder("line").att("style",`stroke: ${pickedB};stroke-width:3`)
+    .att("stroke-linecap","square");
+	let c = t.size;
+	if (rotation % 2 == 0) {
+		line1.att("x1", c);
+		line1.att("y1", 0);
+		line1.att("x2", 0);
+		line1.att("y2",c); 
+	} else {
+		line1.att("x1", 0);
+		line1.att("y1", 0);
+		line1.att("x2", c);
+		line1.att("y2",c);		
+	}
+    if (rotation % 2 !== 0) {
+		line2.att("x1", c);
+		line2.att("y1", 0);
+		line2.att("x2", 0);
+		line2.att("y2",c); 
+	} else {
+		line2.att("x1", 0);
+		line2.att("y1", 0);
+		line2.att("x2", c);
+		line2.att("y2",c);		
+	}
+    let group = new Builder("g").elem(line1).elem(line2); 
+    return group;
 };
 
 woven.cableStyle = function() {
+    console.log(`f woven.cableStyle = function() executed / ()`);
+    let tile = new Builder('polygon').att('points', '50 70 40 50')
+        .att('stroke-width', '4.375px')
+        .att('fill', 'white')
+        .att('stroke', `${pickedB}`);
+    
+    return tile;
+    // <polygon points="70,122.5 87.5,140 70,157.5 52.5,140 " stroke-width="4.375" fill="white" stroke="white"></polygon>
+
 
 }
-
-// woven.tileStyle = woven.traditionalStyle;
-// woven.tileStyle = woven.tileDiag
-// woven.tileStyle = woven.lineStyle
-// woven.tileStyle = woven.cableStyle
 
 class Tiles {
     constructor(size, rows, cols) {
@@ -131,6 +170,9 @@ class Tiles {
                     case 'cableStyle':
                          tile = woven.cableStyle(k, this);
                         break;
+                    case 'lineStyle2':
+                        tile = woven.lineStyle2(k, this);
+                        break;
                 }
 
                 //  let tile = woven.triangleStyle(k, this);
@@ -166,37 +208,40 @@ class Tiles {
 }
 
 // function init () {
-    rowsInput = $('#rowsInput');
-    colsInput = $('#columnsInput');
-    sizeInput = $('#sizeInput');
-    generateBtn = $('#generateBtn').click(function(){
+    let rowsInput = $('#rowsInput');
+    let colsInput = $('#columnsInput');
+    let sizeInput = $('#sizeInput');
+
+    let generateBtn = $('#generateBtn').click(function(){
         generateTable();
     });
 
-    clearBtn = $('#clearBtn').click(function(){
-        clearPage();
-    });
+    // clearBtn = $('#clearBtn').click(function(){
+    //     clearPage();
+    // });
+    // disableBtn($('#toggleGridBtn'));
 
-    toggleGridBtn = $('#toggleGridBtn').click(function(){
+    let toggleGridBtn = $('#toggleGridBtn').click(function(){
         showGrid = true;
     });
 
-    pickerBtnA = $('#colorPickerA').change(function(){
+    let pickerBtnA = $('#colorPickerA').change(function(){
+        changeColors();
+    });
+    let pickerBtnB = $('#colorPickerB').change(function(){
+        changeColors();
+    });
+    let pickedGrid = $('#colorPickerGrid').change(function(){
         changeColors();
     });
 
-    disableBtn(clearBtn);
-    disableBtn(toggleGridBtn);
-    rows = parseInt(rowsInput.val());
-    cols = parseInt(colsInput.val());
-    size = parseInt(sizeInput.val());
-    // pickedA = $('#colorPickerA').val();
-    // pickedB = $('#colorPickerB').val();
-    // pickedBackground = $('#colorPickerBackground').val();
-    // pickedGrid = $('#colorPickerGrid').val();
-    // };
+    let rows = parseInt(rowsInput.val());
+    let cols = parseInt(colsInput.val());
+    let size = parseInt(sizeInput.val());
 
 // main functions:
+let style = woven.lineStyle
+
 function generateTable () {
     console.log('function generateTable() executed');
     getUserInputs();
@@ -206,6 +251,7 @@ function generateTable () {
     console.log(woven.tiles);
     woven.tileStyle = style;
     $('#tileBoard').html(woven.tiles.htmlTable());
+    enableBtn(toggleGridBtn);
 
 }
 
@@ -280,7 +326,7 @@ function changeColors () {
 // }
 
 ////
-let style = woven.lineStyle
+// let style = woven.lineStyle
 
 let showGrid = false;
 
@@ -325,6 +371,14 @@ $(document).ready(function(){
         let btn = this.id;
         markSelectedBtn(btn);
 		selectedStyle = 'cableStyle';
+		console.log(`selected style: ${selectedStyle}`);
+		reset();
+	});
+    $('#lineTile2').on("click", function(event){
+        console.log(`clicked lineTile2`);
+        let btn = this.id;
+        markSelectedBtn(btn);
+		selectedStyle = 'lineStyle2';
 		console.log(`selected style: ${selectedStyle}`);
 		reset();
 	});
